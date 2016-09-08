@@ -18,6 +18,7 @@ RUN apk --no-cache upgrade && \
       zlib-dev && \
     apk add --no-cache --virtual=run-deps \
       python \ 
+      jpeg \
       su-exec && \
     pip --no-cache-dir install --upgrade setuptools && \
     pip --no-cache-dir install --upgrade mezzanine && \
