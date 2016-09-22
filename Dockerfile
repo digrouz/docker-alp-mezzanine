@@ -19,6 +19,7 @@ RUN apk --no-cache upgrade && \
     apk add --no-cache --virtual=run-deps \
       python \ 
       jpeg \
+      ssmtp \
       su-exec && \
     pip --no-cache-dir install --upgrade setuptools && \
     pip --no-cache-dir install --upgrade mezzanine && \
