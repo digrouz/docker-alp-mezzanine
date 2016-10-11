@@ -78,7 +78,6 @@ if [ "$1" = 'mezzanine' ]; then
     cd "/project/${MYPROJECT}"
     /sbin/su-exec "${MYUSER}" /usr/bin/python manage.py createdb --noinput
   fi
-  exec "@"
 fi
 
 exec "$@"
