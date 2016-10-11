@@ -68,9 +68,10 @@ ConfigureUser
 ConfigureSsmtp
 
 if [ "$1" = 'mezzanine' ]; then
-  if [ -d  ]; then
+  . /mezzanine_env/bin/activate
+  if [ -d "/project/${MYPROJECT}" ]; then
     cd "/project/${MYPROJECT}"
-    /sbin/su-exec "${MYUSER}" /usr/bin/python manage.py runserver 0.0.0.0:"${MYPORT}"
+    /sbin/su-exec "${MYUSER}" /usr/bin/gunicorn -b 0.0.0.0:"${MYPORT}" wsgi
   else
     cd /project/
     /sbin/su-exec "${MYUSER}" /usr/bin/mezzanine-project ${MYPROJECT}"
