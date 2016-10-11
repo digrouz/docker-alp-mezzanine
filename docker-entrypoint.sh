@@ -3,6 +3,8 @@
 local MYUSER="mezzanine"
 local MYGID="10004"
 local MYUID="10004"
+local MYPROJECT="myproject"
+local MYPORT="8000"
 
 ConfigureSsmtp () {
   # Customizing sstmp
@@ -66,6 +68,15 @@ ConfigureUser
 ConfigureSsmtp
 
 if [ "$1" = 'mezzanine' ]; then
+  if [ -d  ]; then
+    cd "/project/${MYPROJECT}"
+    /sbin/su-exec "${MYUSER}" /usr/bin/python manage.py runserver 0.0.0.0:"${MYPORT}"
+  else
+    cd /project/
+    /sbin/su-exec "${MYUSER}" /usr/bin/mezzanine-project ${MYPROJECT}"
+    cd "/project/${MYPROJECT}"
+    /sbin/su-exec "${MYUSER}" /usr/bin/python manage.py createdb --noinput
+  fi
   exec "@"
 fi
 
