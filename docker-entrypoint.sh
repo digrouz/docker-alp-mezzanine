@@ -5,6 +5,7 @@ local MYGID="10004"
 local MYUID="10004"
 local MYPROJECT="myproject"
 local MYPORT="8000"
+local MYWORKERS="2"
 
 ConfigureSsmtp () {
   # Customizing sstmp
@@ -77,7 +78,7 @@ if [ "$1" = 'mezzanine' ]; then
     cd "/project/${MYPROJECT}"
     /sbin/su-exec "${MYUSER}" /usr/bin/python manage.py createdb --noinput
   fi
-  /sbin/su-exec "${MYUSER}" gunicorn -b 0.0.0.0:"${MYPORT}" ${MYPROJECT}.wsgi
+  /sbin/su-exec "${MYUSER}" gunicorn -b 0.0.0.0:"${MYPORT}" -w "${MYWORKERS}" "${MYPROJECT}".wsgi
 fi
 
 exec "$@"
