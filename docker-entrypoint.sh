@@ -71,13 +71,13 @@ if [ "$1" = 'mezzanine' ]; then
   . /mezzanine_env/bin/activate
   if [ -d "/project/${MYPROJECT}" ]; then
     cd "/project/${MYPROJECT}"
-    /sbin/su-exec "${MYUSER}" gunicorn -b 0.0.0.0:"${MYPORT}" wsgi
   else
     cd /project/
     /sbin/su-exec "${MYUSER}" mezzanine-project "${MYPROJECT}"
     cd "/project/${MYPROJECT}"
     /sbin/su-exec "${MYUSER}" /usr/bin/python manage.py createdb --noinput
   fi
+  /sbin/su-exec "${MYUSER}" gunicorn -b 0.0.0.0:"${MYPORT}" ${MYPROJECT}.wsgi
 fi
 
 exec "$@"
