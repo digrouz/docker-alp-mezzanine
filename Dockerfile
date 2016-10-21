@@ -12,12 +12,12 @@ RUN apk --no-cache upgrade && \
     apk add --no-cache --virtual=build-deps \
       gcc \
       jpeg-dev \
-      python-dev \
+      python3-dev \
       musl-dev \
       py-pip \
       zlib-dev && \
     apk add --no-cache --virtual=run-deps \
-      python \ 
+      python3 \ 
       jpeg \
       ssmtp \
       su-exec && \
