@@ -22,9 +22,6 @@ RUN apk --no-cache upgrade && \
       ssmtp \
       su-exec && \
     pip --no-cache-dir install --upgrade setuptools && \
-    pip --no-cache-dir install --upgrade virtualenv && \
-    virtualenv mezzanine_env && \
-    source /mezzanine_env/bin/activate && \
     pip --no-cache-dir install --upgrade mezzanine gunicorn && \
     apk del --no-cache --purge \
       build-deps  && \

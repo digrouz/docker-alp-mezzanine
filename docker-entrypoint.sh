@@ -69,7 +69,6 @@ ConfigureUser
 ConfigureSsmtp
 
 if [ "$1" = 'mezzanine' ]; then
-  . /mezzanine_env/bin/activate
   if [ -d "/project/${MYPROJECT}" ]; then
     cd "/project/${MYPROJECT}"
   else
