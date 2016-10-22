@@ -1,18 +1,4 @@
-#pk add --no-cache --virtual=build-deps \
-      gcc \
-      jpeg-dev \
-      python3-dev \
-      musl-dev \
-      zlib-dev && \
-    apk add --no-cache --virtual=run-deps \
-      python3 \
-      jpeg \
-      ssmtp \
-      su-exec && \
-    pip3 --no-cache-dir install --upgrade setuptools && \
-    pip3 --no-cache-dir install --upgrade mezzanine gunicorn && \
-    apk del --no-cache --purge \
-      build-deps vim:set ft=dockerfile:
+# vim:set ft=dockerfile:
 FROM alpine:latest
 MAINTAINER DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>
 
