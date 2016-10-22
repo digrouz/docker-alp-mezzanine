@@ -75,7 +75,7 @@ if [ "$1" = 'mezzanine' ]; then
     cd /project/
     /sbin/su-exec "${MYUSER}" mezzanine-project "${MYPROJECT}"
     cd "/project/${MYPROJECT}"
-    /sbin/su-exec "${MYUSER}" /usr/bin/python manage.py createdb --noinput
+    /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py createdb --noinput
   fi
   /sbin/su-exec "${MYUSER}" gunicorn -b 0.0.0.0:"${MYPORT}" -w "${MYWORKERS}" "${MYPROJECT}".wsgi
 fi
