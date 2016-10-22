@@ -76,7 +76,7 @@ if [ "$1" = 'mezzanine' ]; then
     /sbin/su-exec "${MYUSER}" mezzanine-project "${MYPROJECT}"
     cd "/project/${MYPROJECT}"
     /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py createdb --noinput
-    /sbin/su-exec "${MYUSER}" /bin/cp -r /usr/lib/python$(/usr/bin/python3 --version | /usr/bin/awk '{print substr($2,0,3)}')/site-packages/mezzanine/core/static/* static/
+    /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py collectstatic --noinput
   fi
   /sbin/su-exec "${MYUSER}" gunicorn -b 0.0.0.0:"${MYPORT}" -w "${MYWORKERS}" "${MYPROJECT}".wsgi
 fi
