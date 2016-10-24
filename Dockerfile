@@ -21,7 +21,7 @@ RUN apk --no-cache upgrade && \
       ssmtp \
       su-exec && \
     pip3 --no-cache-dir install --upgrade setuptools pip && \
-    pip3 --no-cache-dir install --upgrade mezzanine mezzanine-mdown gunicorn && \
+    pip3 --no-cache-dir install --upgrade mezzanine mezzanine-mdown psycopg2 gunicorn && \
     apk del --no-cache --purge \
       build-deps  && \
     rm -rf /tmp/* \
