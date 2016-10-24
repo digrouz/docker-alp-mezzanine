@@ -6,6 +6,11 @@ local MYUID="10004"
 local MYPROJECT="myproject"
 local MYPORT="8000"
 local MYWORKERS="2"
+local MYPGDB=""
+local MYPGUSER=""
+local MYPGPASSWD=""
+local MYPGHOST=""
+local MYPGPORT="5432"
 
 ConfigureSsmtp () {
   # Customizing sstmp
@@ -65,6 +70,39 @@ ConfigureUser () {
   fi
 }
 
+ConfigurePostgres()
+{
+  if [ -n "${DOCKPGHOST}" ]; then
+    MYPGHOST="${DOCKPGHOST}"
+    if [ -n "${DOCKPGUSER}" ]; then
+      MYPGUSER="${DOCKPGUSER}"
+      if [ -n "${DOCKPGPASSWD}" ]; then
+        MYPGPASSWD="${DOCKPGPASSWD}"
+        if [ -n "${DOCKPGDB}" ]; then
+          MYPGDB="${DOCKPGDB}"
+          if [ -n "${DOCKPGPORT}" ]; then
+            MYPGPORT="${DOCKPGPORT}"
+          fi
+          /bin/sed -i "s|\s*\"ENGINE\"\s*:\s*\"django.db.backends.sqlite3\",|\ \ \ \ \ \ \ \ \"ENGINE\":\ \"django.db.backends.postgresql_psycopg2\",|g" /mezzanine/myproject/myproject/local_settings.py
+          /bin/sed -i "s|\s*\"HOST\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"NAME\":\ \"${MYPGHOST}\",|g" /mezzanine/myproject/myproject/local_settings.py
+          /bin/sed -i "s|\s*\"PORT\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"USER\":\ \"${MYPGPORT}\",|g" /mezzanine/myproject/myproject/local_settings.py
+          /bin/sed -i "s|\s*\"NAME\"\s*:\s*\"dev.db\",|\ \ \ \ \ \ \ \ \"NAME\":\ \"${MYPGDB}\",|g" /mezzanine/myproject/myproject/local_settings.py
+          /bin/sed -i "s|\s*\"USER\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"USER\":\ \"${MYPGUSER}\",|g" /mezzanine/myproject/myproject/local_settings.py
+          /bin/sed -i "s|\s*\"PASSWORD\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"PASSWORD\":\ \"${MYPGPASSWD}\",|g" /mezzanine/myproject/myproject/local_settings.py
+        else
+          /bin/echo "ERROR: postgresql database's name is missing, please define DOCKPGDB environment variable."
+        fi  
+      else
+        /bin/echo "ERROR: postgresql user's password is missing, please define DOCKPGPASSWD environment variable. Note that empty password are not supported."
+      fi
+    else
+      /bin/echo "ERROR: postgresql user is missing, please define DOCKPGUSER environment variable."
+    fi
+  else
+    /bin/echo "INFO: No postgresql credentials defined, using, sqlite database."
+  fi
+}
+
 ConfigureUser
 ConfigureSsmtp
 
@@ -75,6 +113,7 @@ if [ "$1" = 'mezzanine' ]; then
     cd /project/
     /sbin/su-exec "${MYUSER}" mezzanine-project "${MYPROJECT}"
     cd "/project/${MYPROJECT}"
+    ConfigurePostgres
     /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py createdb --noinput
     /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py collectstatic --noinput
   fi
