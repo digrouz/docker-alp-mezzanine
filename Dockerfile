@@ -23,7 +23,7 @@ RUN apk --no-cache upgrade && \
       postgresql-libs \
       su-exec && \
     pip3 --no-cache-dir install --upgrade setuptools pip && \
-    pip3 --no-cache-dir install --upgrade mezzanine mezzanine-mdown psycopg2 gunicorn && \
+    pip3 --no-cache-dir install --upgrade mezzanine psycopg2 gunicorn && \
     apk del --no-cache --purge \
       build-deps  && \
     rm -rf /tmp/* \
