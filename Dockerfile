@@ -14,11 +14,13 @@ RUN apk --no-cache upgrade && \
       jpeg-dev \
       python3-dev \
       musl-dev \
+      postgresql-dev \
       zlib-dev && \
     apk add --no-cache --virtual=run-deps \
       python3 \ 
       jpeg \
       ssmtp \
+      postgresql-libs \
       su-exec && \
     pip3 --no-cache-dir install --upgrade setuptools pip && \
     pip3 --no-cache-dir install --upgrade mezzanine mezzanine-mdown psycopg2 gunicorn && \
