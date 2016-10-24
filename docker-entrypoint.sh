@@ -123,7 +123,7 @@ if [ "$1" = 'mezzanine' ]; then
     /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py createdb --noinput
     /sbin/su-exec "${MYUSER}" /usr/bin/python3 manage.py collectstatic --noinput
   fi
-  /sbin/su-exec "${MYUSER}" gunicorn -b 0.0.0.0:"${MYPORT}" -w "${MYWORKERS}" "${MYPROJECT}".wsgi
+   exec /sbin/su-exec "${MYUSER}" gunicorn -b 0.0.0.0:"${MYPORT}" -w "${MYWORKERS}" "${MYPROJECT}".wsgi
 fi
 
 exec "$@"
