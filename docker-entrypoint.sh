@@ -3,7 +3,7 @@
 local MYUSER="mezzanine"
 local MYGID="10004"
 local MYUID="10004"
-local MYPROJECT=""${MYPROJECT}""
+local MYPROJECT="myproject"
 local MYPORT="8000"
 local MYWORKERS="2"
 local MYPGDB=""
