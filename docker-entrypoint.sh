@@ -107,6 +107,12 @@ ConfigureUser
 ConfigureSsmtp
 
 if [ "$1" = 'mezzanine' ]; then
+  if [ -n "${DOCKMEZPRT}" ]; then
+    MYPROJECT="${DOCKMEZPRT}"
+  fi
+  if [ -n "${DOCKUNIWRK}" ]; then
+    MYWORKERS="${DOCKUNIWRK}"
+  fi
   if [ -d "/project/${MYPROJECT}" ]; then
     cd "/project/${MYPROJECT}"
   else
