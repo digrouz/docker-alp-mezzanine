@@ -67,7 +67,7 @@ This variable is not mandatory and specifies the postgresql database host addres
 
 ### `DOCKPGPORT`
 
-This variable is not mandatory and specifies the postgresql database host port. Do not specify any if postgresql support is not required, mezzanine will fall back to sqlite.
+This variable is not mandatory and specifies the postgresql database host port. it has default value `5432`.Do not specify any if postgresql support is not required, mezzanine will fall back to sqlite.
 
 ### `DOCKPGDB`
 
