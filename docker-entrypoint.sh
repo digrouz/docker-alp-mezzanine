@@ -84,8 +84,8 @@ ConfigurePostgres()
             MYPGPORT="${DOCKPGPORT}"
           fi
           /bin/sed -i "s|\s*\"ENGINE\"\s*:\s*\"django.db.backends.sqlite3\",|\ \ \ \ \ \ \ \ \"ENGINE\":\ \"django.db.backends.postgresql_psycopg2\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/local_settings.py
-          /bin/sed -i "s|\s*\"HOST\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"NAME\":\ \"${MYPGHOST}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/local_settings.py
-          /bin/sed -i "s|\s*\"PORT\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"USER\":\ \"${MYPGPORT}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/local_settings.py
+          /bin/sed -i "s|\s*\"HOST\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"HOST\":\ \"${MYPGHOST}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/local_settings.py
+          /bin/sed -i "s|\s*\"PORT\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"PORT\":\ \"${MYPGPORT}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/local_settings.py
           /bin/sed -i "s|\s*\"NAME\"\s*:\s*\"dev.db\",|\ \ \ \ \ \ \ \ \"NAME\":\ \"${MYPGDB}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/local_settings.py
           /bin/sed -i "s|\s*\"USER\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"USER\":\ \"${MYPGUSER}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/local_settings.py
           /bin/sed -i "s|\s*\"PASSWORD\"\s*:\s*\"\",|\ \ \ \ \ \ \ \ \"PASSWORD\":\ \"${MYPGPASSWD}\",|g" /project/"${MYPROJECT}"/"${MYPROJECT}"/local_settings.py
