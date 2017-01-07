@@ -1,16 +1,16 @@
 #!/bin/sh
 
-local MYUSER="mezzanine"
-local MYGID="10004"
-local MYUID="10004"
-local MYPROJECT="myproject"
-local MYPORT="8000"
-local MYWORKERS="2"
-local MYPGDB=""
-local MYPGUSER=""
-local MYPGPASSWD=""
-local MYPGHOST=""
-local MYPGPORT="5432"
+MYUSER="mezzanine"
+MYGID="10004"
+MYUID="10004"
+MYPROJECT="myproject"
+MYPORT="8000"
+MYWORKERS="2"
+MYPGDB=""
+MYPGUSER=""
+MYPGPASSWD=""
+MYPGHOST=""
+MYPGPORT="5432"
 
 ConfigureSsmtp () {
   # Customizing sstmp
